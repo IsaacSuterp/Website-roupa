@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-T">
+    <meta charset="UTF-8"> {/* Corrigido para UTF-8 */}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Summer Sale - Landing Page</title>
     <link rel="stylesheet" href="style.css">
@@ -16,28 +16,35 @@
                 </svg>
                 <span>SUPERMARKET</span>
             </div>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="#">HOME</a></li>
-                    <li><a href="#">PRODUCTS</a></li>
-                    <li><a href="#">NEW ARRIVAL</a></li>
-                </ul>
-            </nav>
-            <div class="auth-links">
-                <a href="#">LOGIN / REGISTER</a>
+
+            <button class="nav-toggle" aria-label="toggle navigation">
+                <span class="hamburger"></span>
+            </button>
+
+            <div class="nav-wrapper"> {/* Wrapper para o menu e autenticação */}
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="#">HOME</a></li>
+                        <li><a href="#">PRODUCTS</a></li>
+                        <li><a href="#">NEW ARRIVAL</a></li>
+                    </ul>
+                </nav>
+                <div class="auth-links">
+                    <a href="#">LOGIN / REGISTER</a>
+                </div>
             </div>
         </header>
 
         <main class="hero-section">
             <div class="hero-content">
                 <div class="hero-image-container">
-                    <img src="https://images.pexels.com/photos/375880/pexels-photo-375880.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Modelo com sacolas de compras">
-                     <div class="decorative-circle circle-1">
+                    <img src="https://images.pexels.com/photos/375880/pexels-photo-375880.jpeg?auto=compress&cs=tinysrgb&w=800&h=1200" alt="Modelo com sacolas de compras">
+                    <div class="decorative-circle circle-1">
                         <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
-                            <circle cx="50" cy="50" r="48" fill="#c4a78c" />
+                            <circle cx="50" cy="50" r="48" />
                             <defs>
                                 <pattern id="diagLines1" width="8" height="8" patternTransform="rotate(45 50 50)" patternUnits="userSpaceOnUse">
-                                    <line x1="0" y1="0" x2="0" y2="8" style="stroke:white; stroke-width:1" />
+                                    <line x1="0" y1="0" x2="0" y2="8" />
                                 </pattern>
                             </defs>
                             <circle cx="50" cy="50" r="48" fill="url(#diagLines1)" />
@@ -55,12 +62,12 @@
                         </svg>
                     </div>
                     <a href="#" class="cta-button">SEE PRODUCT</a>
-                     <div class="decorative-circle circle-2">
+                    <div class="decorative-circle circle-2">
                          <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
-                            <circle cx="50" cy="50" r="48" fill="#c4a78c" />
+                            <circle cx="50" cy="50" r="48" />
                             <defs>
                                 <pattern id="diagLines2" width="8" height="8" patternTransform="rotate(45 50 50)" patternUnits="userSpaceOnUse">
-                                    <line x1="0" y1="0" x2="0" y2="8" style="stroke:white; stroke-width:1" />
+                                    <line x1="0" y1="0" x2="0" y2="8" />
                                 </pattern>
                             </defs>
                             <circle cx="50" cy="50" r="48" fill="url(#diagLines2)" />
@@ -76,7 +83,7 @@
             </div>
         </main>
     </div>
-    <svg class="background-clouds" width="100%" height="100%" viewBox="0 0 1440 800" preserveAspectRatio="none" style="position:absolute; top:0; left:0; z-index:-1; width:100%; height:100%;">
+    <svg class="background-clouds" width="100%" height="100%" viewBox="0 0 1440 800" preserveAspectRatio="none"> {/* Removido style inline */}
         <defs>
             <filter id="softBlur" x="-50%" y="-50%" width="200%" height="200%">
                 <feGaussianBlur in="SourceGraphic" stdDeviation="3"/>
