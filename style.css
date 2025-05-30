@@ -1,0 +1,330 @@
+/* Reset Básico e Configurações Globais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #f5e9dd; /* Cor de fundo principal */
+    color: #333;
+    line-height: 1.6;
+    overflow-x: hidden; /* Prevenir scroll horizontal causado pelas nuvens SVG */
+    position: relative; /* Para o z-index do SVG de fundo */
+}
+
+.page-wrapper {
+    max-width: 1440px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1; /* Para ficar acima do SVG de fundo */
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+/* Cabeçalho */
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    /* O fundo é efetivamente transparente para mostrar a nuvem/cor abaixo */
+    position: relative;
+    z-index: 10; /* Para ficar sobre a nuvem */
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.2em;
+}
+
+.logo-icon {
+    margin-right: 8px;
+    transform: scale(1.2); /* Ajuste de tamanho do ícone do logo */
+}
+.logo-icon path {
+    stroke: #333; /* Cor do ícone do logo */
+}
+
+
+.main-nav ul {
+    display: flex;
+}
+
+.main-nav li {
+    margin-left: 30px;
+}
+
+.main-nav a {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    padding: 5px 0;
+    transition: color 0.3s ease;
+}
+
+.main-nav a:hover, .auth-links a:hover {
+    color: #c4a78c; /* Cor de hover */
+}
+
+.auth-links a {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+}
+
+/* Seção Hero */
+.hero-section {
+    min-height: calc(100vh - 80px); /* 80px é uma altura aproximada do header */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 50px 50px; /* Aumentado padding inferior */
+    position: relative;
+}
+
+.hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Espaçar imagem e texto */
+    width: 100%;
+    max-width: 1200px; /* Limitar largura do conteúdo */
+    gap: 40px; /* Espaço entre imagem e texto */
+}
+
+.hero-image-container {
+    flex-basis: 45%; /* Parte da imagem */
+    position: relative; /* Para posicionar o círculo decorativo */
+    display: flex;
+    justify-content: center; /* Centralizar a imagem se ela for menor */
+}
+
+.hero-image-container img {
+    max-width: 100%;
+    height: auto;
+    max-height: 550px; /* Altura máxima da imagem da modelo */
+    object-fit: contain;
+    border-radius: 10px; /* Suave arredondamento se a imagem tiver fundo */
+    position: relative;
+    z-index: 5; /* Para ficar sobre o círculo */
+}
+
+.hero-text-content {
+    flex-basis: 50%; /* Parte do texto */
+    padding-left: 20px;
+    position: relative; /* Para posicionar o círculo decorativo */
+}
+
+.hero-text-content h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 4.5em; /* Tamanho bem grande */
+    font-weight: 900;
+    color: #333;
+    margin-bottom: 20px;
+    line-height: 1.1;
+}
+
+.hero-text-content p {
+    font-size: 1.1em;
+    margin-bottom: 25px;
+    max-width: 450px; /* Limitar largura do parágrafo */
+}
+
+.wavy-lines {
+    margin-bottom: 30px;
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: #c4a78c; /* Bege mais escuro */
+    color: white;
+    padding: 15px 35px;
+    border-radius: 5px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #b09070; /* Tom mais escuro no hover */
+}
+
+/* Círculos Decorativos */
+.decorative-circle {
+    position: absolute;
+    z-index: 1; /* Atrás do conteúdo principal */
+    opacity: 0.8;
+}
+.decorative-circle svg circle:first-child { /* Círculo de fundo sólido */
+    fill: #c4a78c;
+}
+.decorative-circle svg line { /* Linhas do padrão */
+    stroke: rgba(255, 255, 255, 0.7); /* Linhas brancas semi-transparentes */
+    stroke-width: 1.5; /* Ajuste da espessura da linha */
+}
+
+
+.circle-1 { /* Atrás da modelo */
+    width: 180px;
+    height: 180px;
+    top: 20%;
+    left: -40px; /* Ajuste para "sair" um pouco da imagem */
+    z-index: 0; /* Para ficar atrás da imagem da modelo */
+}
+
+.circle-2 { /* Perto do botão */
+    width: 120px;
+    height: 120px;
+    bottom: 10%; /* Ajustar conforme necessidade */
+    left: -20px;  /* Perto do texto e botão, mas não sobrepondo muito */
+    transform: translateY(50%); /* Empurrar um pouco para baixo */
+}
+
+
+/* Ícones Sociais */
+.social-icons {
+    position: absolute;
+    bottom: 30px;
+    right: 50px;
+    display: flex;
+    gap: 15px;
+    z-index: 10;
+}
+
+.social-icons a svg {
+    width: 28px; /* Tamanho um pouco maior */
+    height: 28px;
+    fill: #333; /* Cor escura para os ícones */
+    background-color: rgba(255, 255, 255, 0.5); /* Fundo semi-transparente */
+    border-radius: 50%;
+    padding: 5px; /* Pequeno espaçamento interno */
+    transition: transform 0.3s ease, fill 0.3s ease;
+}
+
+.social-icons a:hover svg {
+    transform: scale(1.1);
+    fill: #c4a78c; /* Cor de hover */
+}
+
+/* SVG de Nuvens de Fundo */
+.background-clouds {
+    position: fixed; /* Ou absolute, dependendo do efeito desejado */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Para ficar atrás de todo o conteúdo */
+    pointer-events: none; /* Para não interferir com cliques */
+}
+
+
+/* Media Queries para Responsividade Básica */
+@media (max-width: 1024px) {
+    .hero-text-content h1 {
+        font-size: 3.5em;
+    }
+    .hero-image-container img {
+        max-height: 450px;
+    }
+    .circle-1 {
+        width: 150px;
+        height: 150px;
+    }
+    .circle-2 {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+@media (max-width: 768px) {
+    .site-header {
+        flex-direction: column;
+        padding: 20px;
+        gap: 15px;
+    }
+    .main-nav ul {
+        justify-content: center;
+        flex-wrap: wrap; /* Quebrar linha se necessário */
+    }
+    .main-nav li {
+        margin: 0 10px; /* Menor margem */
+    }
+
+    .hero-content {
+        flex-direction: column;
+        text-align: center; /* Centralizar texto no mobile */
+    }
+    .hero-image-container {
+        margin-bottom: 30px;
+        order: -1; /* Imagem primeiro no mobile */
+    }
+    .hero-image-container img {
+        max-height: 350px;
+    }
+    .hero-text-content {
+        padding-left: 0;
+        align-items: center; /* Centralizar conteúdo */
+        display: flex;
+        flex-direction: column; /* Itens em coluna */
+    }
+    .hero-text-content h1 {
+        font-size: 2.8em;
+    }
+    .hero-text-content p {
+        font-size: 1em;
+        max-width: 90%;
+    }
+    .circle-1 { /* Esconder ou reposicionar */
+        display: none; /* Simplicidade para mobile */
+    }
+    .circle-2 {
+       /* Posição relativa ao container de texto */
+       position: relative;
+       bottom: auto;
+       left: auto;
+       transform: none;
+       margin-top: 20px;
+       width: 80px;
+       height: 80px;
+    }
+
+    .social-icons {
+        position: static; /* Reposicionar para o fluxo normal */
+        justify-content: center;
+        margin-top: 40px;
+        padding-bottom: 30px;
+    }
+     /* Ajuste no SVG das nuvens para não cortar o conteúdo em telas menores */
+    .background-clouds {
+        height: auto; /* Permitir que o SVG se ajuste à altura do conteúdo */
+        min-height: 100vh;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-text-content h1 {
+        font-size: 2.2em;
+    }
+    .cta-button {
+        padding: 12px 25px;
+        font-size: 0.9em;
+    }
+    .logo {
+        font-size: 1em;
+    }
+    .main-nav a, .auth-links a {
+        font-size: 0.9em;
+    }
+}
