@@ -7,18 +7,18 @@
 
 body {
     font-family: 'Open Sans', sans-serif;
-    background-color: #f5e9dd; /* Cor de fundo principal */
+    background-color: #f5e9dd;
     color: #333;
     line-height: 1.6;
-    overflow-x: hidden; /* Prevenir scroll horizontal causado pelas nuvens SVG */
-    position: relative; /* Para o z-index do SVG de fundo */
+    overflow-x: hidden;
+    position: relative;
 }
 
 .page-wrapper {
     max-width: 1440px;
     margin: 0 auto;
     position: relative;
-    z-index: 1; /* Para ficar acima do SVG de fundo */
+    z-index: 1;
 }
 
 a {
@@ -35,10 +35,9 @@ ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 50px;
-    /* O fundo é efetivamente transparente para mostrar a nuvem/cor abaixo */
+    padding: 20px 5vw; /* Usando vw para padding lateral */
     position: relative;
-    z-index: 10; /* Para ficar sobre a nuvem */
+    z-index: 100; /* Mais alto para o menu mobile */
 }
 
 .logo {
@@ -46,87 +45,147 @@ ul {
     align-items: center;
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 1.2em;
+    font-size: clamp(1em, 2.5vw, 1.2em); /* Fonte responsiva */
 }
 
 .logo-icon {
     margin-right: 8px;
-    transform: scale(1.2); /* Ajuste de tamanho do ícone do logo */
+    transform: scale(1.2);
 }
 .logo-icon path {
-    stroke: #333; /* Cor do ícone do logo */
+    stroke: #333;
 }
 
+/* Wrapper da Navegação para mobile */
+.nav-wrapper {
+    display: flex;
+    align-items: center;
+}
 
 .main-nav ul {
     display: flex;
 }
 
 .main-nav li {
-    margin-left: 30px;
+    margin-left: clamp(15px, 3vw, 30px); /* Espaçamento responsivo */
 }
 
-.main-nav a {
+.main-nav a, .auth-links a {
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
     padding: 5px 0;
     transition: color 0.3s ease;
+    font-size: clamp(0.85em, 2vw, 1em);
 }
 
 .main-nav a:hover, .auth-links a:hover {
-    color: #c4a78c; /* Cor de hover */
+    color: #c4a78c;
 }
 
-.auth-links a {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
+.auth-links {
+    margin-left: clamp(15px, 3vw, 30px); /* Espaçamento do auth links */
 }
+
+
+/* Botão Hambúrguer */
+.nav-toggle {
+    display: none; /* Escondido por padrão em telas maiores */
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    padding: 0.5em;
+    z-index: 1001; /* Acima do .nav-wrapper */
+}
+
+.hamburger {
+    display: block;
+    position: relative;
+    width: 2em;
+    height: 3px;
+    background: #333;
+    transition: transform 0.3s ease-in-out;
+}
+
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: #333;
+    transition: transform 0.3s ease-in-out, top 0.3s ease-in-out, bottom 0.3s ease-in-out;
+}
+
+.hamburger::before {
+    top: -8px;
+}
+
+.hamburger::after {
+    bottom: -8px;
+}
+
+/* Estado aberto do Hambúrguer */
+.nav-open .hamburger {
+    transform: rotate(45deg);
+}
+.nav-open .hamburger::before {
+    top: 0;
+    transform: rotate(90deg);
+}
+.nav-open .hamburger::after {
+    bottom: 0;
+    transform: rotate(90deg);
+    opacity: 0; /* Esconde a linha do meio para formar um X */
+}
+
 
 /* Seção Hero */
 .hero-section {
-    min-height: calc(100vh - 80px); /* 80px é uma altura aproximada do header */
+    min-height: calc(100vh - 80px);
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0px 50px 50px; /* Aumentado padding inferior */
+    padding: 0px 5vw 50px; /* Usando vw */
     position: relative;
 }
 
 .hero-content {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Espaçar imagem e texto */
+    justify-content: space-between;
     width: 100%;
-    max-width: 1200px; /* Limitar largura do conteúdo */
-    gap: 40px; /* Espaço entre imagem e texto */
+    max-width: 1200px;
+    gap: clamp(20px, 4vw, 40px); /* Gap responsivo */
 }
 
 .hero-image-container {
-    flex-basis: 45%; /* Parte da imagem */
-    position: relative; /* Para posicionar o círculo decorativo */
+    flex-basis: 45%;
+    position: relative;
     display: flex;
-    justify-content: center; /* Centralizar a imagem se ela for menor */
+    justify-content: center;
 }
 
 .hero-image-container img {
     max-width: 100%;
     height: auto;
-    max-height: 550px; /* Altura máxima da imagem da modelo */
+    max-height: clamp(300px, 60vh, 550px); /* Altura da imagem responsiva */
     object-fit: contain;
-    border-radius: 10px; /* Suave arredondamento se a imagem tiver fundo */
+    border-radius: 10px;
     position: relative;
-    z-index: 5; /* Para ficar sobre o círculo */
+    z-index: 5;
 }
 
 .hero-text-content {
-    flex-basis: 50%; /* Parte do texto */
-    padding-left: 20px;
-    position: relative; /* Para posicionar o círculo decorativo */
+    flex-basis: 50%;
+    padding-left: clamp(0px, 2vw, 20px); /* Padding responsivo */
+    position: relative;
 }
 
 .hero-text-content h1 {
     font-family: 'Montserrat', sans-serif;
-    font-size: 4.5em; /* Tamanho bem grande */
+    /* font-size: clamp(min, ideal, max) */
+    font-size: clamp(2.2em, 7vw, 4.5em);
     font-weight: 900;
     color: #333;
     margin-bottom: 20px;
@@ -134,197 +193,262 @@ ul {
 }
 
 .hero-text-content p {
-    font-size: 1.1em;
+    font-size: clamp(0.9em, 2.5vw, 1.1em);
     margin-bottom: 25px;
-    max-width: 450px; /* Limitar largura do parágrafo */
+    max-width: 450px;
 }
 
 .wavy-lines {
     margin-bottom: 30px;
 }
+.wavy-lines svg {
+    width: clamp(40px, 8vw, 60px); /* Largura responsiva */
+}
 
 .cta-button {
     display: inline-block;
-    background-color: #c4a78c; /* Bege mais escuro */
+    background-color: #c4a78c;
     color: white;
-    padding: 15px 35px;
+    padding: clamp(10px, 2.5vw, 15px) clamp(20px, 5vw, 35px); /* Padding responsivo */
     border-radius: 5px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 1em;
+    font-size: clamp(0.8em, 2.5vw, 1em);
     text-transform: uppercase;
     letter-spacing: 1px;
     transition: background-color 0.3s ease;
 }
 
 .cta-button:hover {
-    background-color: #b09070; /* Tom mais escuro no hover */
+    background-color: #b09070;
 }
 
 /* Círculos Decorativos */
 .decorative-circle {
     position: absolute;
-    z-index: 1; /* Atrás do conteúdo principal */
+    z-index: 1;
     opacity: 0.8;
 }
-.decorative-circle svg circle:first-child { /* Círculo de fundo sólido */
+.decorative-circle svg circle:first-child {
     fill: #c4a78c;
 }
-.decorative-circle svg line { /* Linhas do padrão */
-    stroke: rgba(255, 255, 255, 0.7); /* Linhas brancas semi-transparentes */
-    stroke-width: 1.5; /* Ajuste da espessura da linha */
+.decorative-circle svg line {
+    stroke: rgba(255, 255, 255, 0.7);
+    stroke-width: clamp(1px, 0.2vw, 1.5px); /* Espessura da linha responsiva */
 }
 
-
-.circle-1 { /* Atrás da modelo */
-    width: 180px;
-    height: 180px;
+.circle-1 {
+    width: clamp(100px, 20vw, 180px); /* Tamanho responsivo */
+    height: clamp(100px, 20vw, 180px);
     top: 20%;
-    left: -40px; /* Ajuste para "sair" um pouco da imagem */
-    z-index: 0; /* Para ficar atrás da imagem da modelo */
+    left: -5%; /* Ajuste para "sair" um pouco da imagem */
+    z-index: 0;
 }
 
-.circle-2 { /* Perto do botão */
-    width: 120px;
-    height: 120px;
-    bottom: 10%; /* Ajustar conforme necessidade */
-    left: -20px;  /* Perto do texto e botão, mas não sobrepondo muito */
-    transform: translateY(50%); /* Empurrar um pouco para baixo */
+.circle-2 {
+    width: clamp(80px, 15vw, 120px); /* Tamanho responsivo */
+    height: clamp(80px, 15vw, 120px);
+    bottom: 10%;
+    left: -5%;
+    transform: translateY(50%);
 }
-
 
 /* Ícones Sociais */
 .social-icons {
     position: absolute;
     bottom: 30px;
-    right: 50px;
+    right: 5vw; /* Usando vw */
     display: flex;
-    gap: 15px;
+    gap: clamp(10px, 2vw, 15px); /* Gap responsivo */
     z-index: 10;
 }
 
 .social-icons a svg {
-    width: 28px; /* Tamanho um pouco maior */
-    height: 28px;
-    fill: #333; /* Cor escura para os ícones */
-    background-color: rgba(255, 255, 255, 0.5); /* Fundo semi-transparente */
+    width: clamp(24px, 4vw, 28px); /* Tamanho responsivo */
+    height: clamp(24px, 4vw, 28px);
+    fill: #333;
+    background-color: rgba(255, 255, 255, 0.5);
     border-radius: 50%;
-    padding: 5px; /* Pequeno espaçamento interno */
+    padding: clamp(3px, 1vw, 5px); /* Padding responsivo */
     transition: transform 0.3s ease, fill 0.3s ease;
 }
 
 .social-icons a:hover svg {
     transform: scale(1.1);
-    fill: #c4a78c; /* Cor de hover */
+    fill: #c4a78c;
 }
 
 /* SVG de Nuvens de Fundo */
 .background-clouds {
-    position: fixed; /* Ou absolute, dependendo do efeito desejado */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    z-index: -1; /* Para ficar atrás de todo o conteúdo */
-    pointer-events: none; /* Para não interferir com cliques */
+    height: 100%; /* Cobrir toda a viewport */
+    min-height: 100vh; /* Garantir que cubra pelo menos a altura da viewport */
+    z-index: -1;
+    pointer-events: none;
 }
 
 
-/* Media Queries para Responsividade Básica */
-@media (max-width: 1024px) {
+/* --- Media Queries para Responsividade --- */
+
+/* Tablet Paisagem e Desktop Menor (até 1200px) */
+@media (max-width: 1200px) {
     .hero-text-content h1 {
-        font-size: 3.5em;
-    }
-    .hero-image-container img {
-        max-height: 450px;
+        font-size: clamp(2.5em, 6vw, 4em);
     }
     .circle-1 {
-        width: 150px;
-        height: 150px;
+        left: -2%;
     }
     .circle-2 {
-        width: 100px;
-        height: 100px;
+        left: -2%;
     }
 }
 
-@media (max-width: 768px) {
+/* Tablet Retrato (até 992px) - Ponto para menu hambúrguer */
+@media (max-width: 992px) {
     .site-header {
+        /* Deixa o logo à esquerda e o toggle à direita */
+    }
+
+    .nav-toggle {
+        display: block; /* Mostrar botão hambúrguer */
+    }
+
+    .nav-wrapper {
+        position: absolute;
+        background-color: rgba(245, 233, 221, 0.95); /* Fundo do menu mobile com leve transparência */
+        backdrop-filter: blur(5px); /* Efeito de vidro fosco */
+        top: 100%; /* Abaixo do header */
+        left: 0;
+        right: 0;
         flex-direction: column;
-        padding: 20px;
-        gap: 15px;
+        align-items: center;
+        padding: 2em 0;
+        transform: translateY(-150%); /* Escondido fora da tela */
+        transition: transform 0.4s ease-in-out;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
+
+    .nav-open .nav-wrapper {
+        transform: translateY(0); /* Mostrar menu */
+    }
+
     .main-nav ul {
-        justify-content: center;
-        flex-wrap: wrap; /* Quebrar linha se necessário */
+        flex-direction: column;
+        text-align: center;
     }
+
     .main-nav li {
-        margin: 0 10px; /* Menor margem */
+        margin: 0; /* Remover margem lateral */
     }
+    .main-nav a {
+        display: block;
+        padding: 0.8em 2em; /* Mais área de toque */
+        font-size: 1.1em;
+    }
+    .auth-links {
+        margin-left: 0;
+        margin-top: 1.5em; /* Espaço acima dos links de autenticação */
+        text-align: center;
+    }
+    .auth-links a {
+         font-size: 1.1em;
+         padding: 0.5em 1em;
+    }
+
 
     .hero-content {
         flex-direction: column;
-        text-align: center; /* Centralizar texto no mobile */
+        text-align: center;
     }
     .hero-image-container {
         margin-bottom: 30px;
-        order: -1; /* Imagem primeiro no mobile */
-    }
-    .hero-image-container img {
-        max-height: 350px;
+        order: -1; /* Imagem primeiro */
+        max-width: 70vw; /* Limitar largura da imagem */
     }
     .hero-text-content {
         padding-left: 0;
-        align-items: center; /* Centralizar conteúdo */
+        align-items: center;
         display: flex;
-        flex-direction: column; /* Itens em coluna */
+        flex-direction: column;
     }
-    .hero-text-content h1 {
-        font-size: 2.8em;
-    }
-    .hero-text-content p {
-        font-size: 1em;
-        max-width: 90%;
-    }
-    .circle-1 { /* Esconder ou reposicionar */
-        display: none; /* Simplicidade para mobile */
+     .circle-1 {
+        top: 10%;
+        left: 5%;
+        width: clamp(100px, 25vw, 150px);
+        height: clamp(100px, 25vw, 150px);
     }
     .circle-2 {
-       /* Posição relativa ao container de texto */
-       position: relative;
+       position: relative; /* Para centralizar com o texto */
        bottom: auto;
        left: auto;
        transform: none;
        margin-top: 20px;
-       width: 80px;
-       height: 80px;
+       width: clamp(60px, 15vw, 80px);
+       height: clamp(60px, 15vw, 80px);
     }
+}
 
+
+/* Mobile Grande (até 768px) */
+@media (max-width: 768px) {
+    .site-header {
+        padding: 15px 4vw;
+    }
+    .hero-image-container img {
+        max-height: clamp(250px, 50vh, 350px);
+    }
     .social-icons {
-        position: static; /* Reposicionar para o fluxo normal */
+        position: static;
         justify-content: center;
         margin-top: 40px;
         padding-bottom: 30px;
     }
-     /* Ajuste no SVG das nuvens para não cortar o conteúdo em telas menores */
-    .background-clouds {
-        height: auto; /* Permitir que o SVG se ajuste à altura do conteúdo */
-        min-height: 100vh;
+}
+
+/* Mobile Médio (até 600px) */
+@media (max-width: 600px) {
+    .hero-text-content h1 {
+        font-size: clamp(2em, 10vw, 2.8em); /* Ajuste para H1 em telas bem pequenas */
+    }
+    .hero-text-content p {
+        font-size: clamp(0.8em, 4vw, 0.9em);
+        max-width: 90%;
+    }
+    .cta-button {
+        padding: clamp(8px, 2vw, 12px) clamp(15px, 4vw, 25px);
+        font-size: clamp(0.75em, 3vw, 0.9em);
+    }
+    .circle-1 {
+        display: none; /* Esconder o círculo maior para não poluir */
+    }
+     .wavy-lines svg {
+        width: clamp(30px, 6vw, 40px);
     }
 }
 
+/* Mobile Pequeno (até 480px) */
 @media (max-width: 480px) {
-    .hero-text-content h1 {
-        font-size: 2.2em;
-    }
-    .cta-button {
-        padding: 12px 25px;
-        font-size: 0.9em;
-    }
     .logo {
-        font-size: 1em;
+        font-size: clamp(0.9em, 4vw, 1em);
     }
-    .main-nav a, .auth-links a {
-        font-size: 0.9em;
+    .nav-toggle {
+        padding: 0.3em;
+    }
+    .hamburger {
+        width: 1.8em;
+    }
+    .hamburger::before { top: -7px; }
+    .hamburger::after { bottom: -7px; }
+
+    .hero-text-content h1 {
+        font-size: clamp(1.8em, 8vw, 2.2em);
+    }
+    .social-icons a svg {
+        width: clamp(20px, 5vw, 24px);
+        height: clamp(20px, 5vw, 24px);
+        padding: clamp(2px, 0.8vw, 3px);
     }
 }
